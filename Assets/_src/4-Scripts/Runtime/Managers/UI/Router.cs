@@ -20,7 +20,7 @@ namespace SGEngine.Managers.UI
         private void Awake()
         {
             screenContainer.SetActive(false);
-            
+
             DI.Add<IRouter>(this);
         }
         

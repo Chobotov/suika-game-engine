@@ -1,18 +1,30 @@
-﻿using SGEngine.Configs.DropItem;
+﻿using System;
+using SGEngine.Configs.DropItem;
 using UnityEngine;
 
 namespace SGEngine.DropItem
 {
-    public class DropItem : MonoBehaviour
+    public class DropItem : MonoBehaviour, IEquatable<DropItem>
     {
-        [SerializeField] private SpriteRenderer _spriteRenderer;
+        [SerializeField] private SpriteRenderer spriteRenderer;
 
+        private CircleCollider2D collider2D;
         private Rigidbody2D rigidbody2D;
 
         private DropItemData data;
 
+        private bool isDropped;
+
+        public DropItemData Data => data;
+
+        public bool CanCheckCollision { get; set; }
+
+        public event Action<DropItem, DropItem> OnCollisionDetect;
+        public event Action<DropItem> OnDestroy;
+
         private void Awake()
         {
+            collider2D = GetComponent<CircleCollider2D>();
             rigidbody2D = GetComponent<Rigidbody2D>();
         }
 
@@ -22,6 +34,8 @@ namespace SGEngine.DropItem
 
             SetSprite(data.Sprite);
             SetScale(data.ScaleModificator);
+
+            CanCheckCollision = true;
 
             Activate();
         }
@@ -41,13 +55,13 @@ namespace SGEngine.DropItem
         public void SetRigidbodyType(RigidbodyType2D bodyType)
         {
             rigidbody2D.bodyType = bodyType;
+
+            isDropped = rigidbody2D.bodyType == RigidbodyType2D.Dynamic;
         }
 
-        public DropItem SetPosition(Vector3 pos)
+        public void SetColliderState(bool state)
         {
-            transform.position = pos;
-
-            return this;
+            collider2D.enabled = state;
         }
 
         private void SetScale(float scaleModificator)
@@ -57,7 +71,45 @@ namespace SGEngine.DropItem
 
         private void SetSprite(Sprite sprite)
         {
-            _spriteRenderer.sprite = sprite;
+            spriteRenderer.sprite = sprite;
+        }
+
+        public void Destroy()
+        {
+            OnDestroy?.Invoke(this);
+
+            Destroy(gameObject);
+        }
+
+        private void OnCollisionEnter2D(Collision2D col)
+        {
+            if (!isDropped || !CanCheckCollision) return;
+
+            if (col.gameObject.TryGetComponent<DropItem>(out var item))
+            {
+                if (item.isDropped && item.CanCheckCollision)
+                {
+                    OnCollisionDetect?.Invoke(this, item);
+                }
+            }
+        }
+
+        public bool Equals(DropItem other)
+        {
+            return Equals(data, other.data);
+        }
+
+        public override bool Equals(object obj)
+        {
+            if (ReferenceEquals(null, obj)) return false;
+            if (ReferenceEquals(this, obj)) return true;
+            if (obj.GetType() != this.GetType()) return false;
+            return Equals((DropItem)obj);
+        }
+
+        public override int GetHashCode()
+        {
+            return HashCode.Combine(base.GetHashCode(), data);
         }
     }
 }

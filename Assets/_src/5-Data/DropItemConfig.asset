@@ -13,12 +13,80 @@ MonoBehaviour:
   m_Name: DropItemConfig
   m_EditorClassIdentifier: 
   items:
-  - sprite: {fileID: 21300000, guid: 0439b57ecb3d7e64695d22bde638f8aa, type: 3}
+  - name: "\u0411\u0435\u043B\u044B\u0439"
+    id: 8c86b66a-3053-4f04-8870-14a2439468a5
+    sprite: {fileID: 21300000, guid: 0439b57ecb3d7e64695d22bde638f8aa, type: 3}
+    scaleModificator: 0.5
+    weight: 0.5
+    score: 5
+    nextItemDataId: 449701f6-f1e5-48af-b4ab-da139cea734f
+  - name: "\u041A\u0440\u0430\u0441\u043D\u044B\u0439"
+    id: 449701f6-f1e5-48af-b4ab-da139cea734f
+    sprite: {fileID: 21300000, guid: 838ecddbe3ea1e646bb508c07429027e, type: 3}
     scaleModificator: 1
+    weight: 0.25
+    score: 10
+    nextItemDataId: 2894f5d7-4764-4a14-8682-9cf440137c22
+  - name: "\u0421\u0438\u043D\u0438\u0439"
+    id: 2894f5d7-4764-4a14-8682-9cf440137c22
+    sprite: {fileID: 21300000, guid: d0eb4bc03d4f7ac478d35022402cd41e, type: 3}
+    scaleModificator: 1.25
+    weight: 0.15
+    score: 15
+    nextItemDataId: 7f851fe1-4915-461c-b7d3-1a94132fbad3
+  - name: "\u0411\u0438\u0440\u044E\u0437\u043E\u0432\u044B\u0439"
+    id: 7f851fe1-4915-461c-b7d3-1a94132fbad3
+    sprite: {fileID: 21300000, guid: 14a2e9895c919c5469e700cb60e9c7ed, type: 3}
+    scaleModificator: 1.5
+    weight: 0.1
+    score: 15
+    nextItemDataId: 7b3a4c5f-e2a5-4e3d-a002-51fd7305c35a
+  - name: "\u0421\u0432\u0435\u0442\u043B\u043E \u0437\u0435\u043B\u0435\u043D\u044B\u0439"
+    id: 7b3a4c5f-e2a5-4e3d-a002-51fd7305c35a
+    sprite: {fileID: 21300000, guid: aae4d740314aca8428f3d7012284e1ee, type: 3}
+    scaleModificator: 2
     weight: 0
-  - sprite: {fileID: 21300000, guid: 9c0fc1d8b84046e4ca2b46c04761bb0d, type: 3}
-    scaleModificator: 1
+    score: 20
+    nextItemDataId: a8d92bbe-145f-43b7-91b6-53a37cd12bf0
+  - name: "\u041E\u0440\u0430\u043D\u0436\u0435\u0432\u044B\u0439"
+    id: a8d92bbe-145f-43b7-91b6-53a37cd12bf0
+    sprite: {fileID: 21300000, guid: 4b387b8a1679bda428ef8be1ad709e17, type: 3}
+    scaleModificator: 2.25
     weight: 0
-  - sprite: {fileID: 21300000, guid: a6919f3f8ca63074aa0018fef0773755, type: 3}
-    scaleModificator: 1
+    score: 25
+    nextItemDataId: e79bd1be-41f6-4fbc-9543-5b4af49470d3
+  - name: "\u0421\u0438\u0440\u0435\u043D\u0435\u0432\u044B\u0439"
+    id: e79bd1be-41f6-4fbc-9543-5b4af49470d3
+    sprite: {fileID: 21300000, guid: 89efcf69e83fff54bb67f1053b50c40d, type: 3}
+    scaleModificator: 2.5
     weight: 0
+    score: 30
+    nextItemDataId: eff6186b-b955-4bf6-bc77-4398cde0a76f
+  - name: "\u0420\u043E\u0437\u043E\u0432\u044B\u0439"
+    id: eff6186b-b955-4bf6-bc77-4398cde0a76f
+    sprite: {fileID: 21300000, guid: 56461e7033154904bb3699c50bb19e2e, type: 3}
+    scaleModificator: 3
+    weight: 0
+    score: 35
+    nextItemDataId: c49a1b38-48a1-48ec-a9fd-48bfcf779703
+  - name: "\u0416\u0435\u043B\u0442\u044B\u0439"
+    id: c49a1b38-48a1-48ec-a9fd-48bfcf779703
+    sprite: {fileID: 21300000, guid: 24477b1203579494c9b2a558fa2c9eb0, type: 3}
+    scaleModificator: 3.25
+    weight: 0
+    score: 40
+    nextItemDataId: 9cdbd854-b6cc-46b8-867d-925aff96d5c8
+  - name: "\u0417\u0435\u043B\u0435\u043D\u044B\u0439"
+    id: 9cdbd854-b6cc-46b8-867d-925aff96d5c8
+    sprite: {fileID: 21300000, guid: 19026c9b2f1358642aa52646380db12f, type: 3}
+    scaleModificator: 3.5
+    weight: 0
+    score: 45
+    nextItemDataId: 101fcec7-ccf2-445c-b8bb-00f0d199828a
+  - name: "\u0413\u043E\u043B\u0443\u0431\u043E\u0439"
+    id: 101fcec7-ccf2-445c-b8bb-00f0d199828a
+    sprite: {fileID: 21300000, guid: 19026c9b2f1358642aa52646380db12f, type: 3}
+    scaleModificator: 4
+    weight: 0
+    score: 50
+    nextItemDataId: 

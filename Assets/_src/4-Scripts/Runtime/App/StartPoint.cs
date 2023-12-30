@@ -7,7 +7,7 @@ using UnityEngine;
 
 namespace SGEngine.Runtime.App
 {
-    public sealed class StartPoint
+    public sealed class StartPoint : MonoBehaviour
     {
         private IGameManager _gameManager;
         private IAudioManager _audioManager;
@@ -15,8 +15,10 @@ namespace SGEngine.Runtime.App
 
         private YandexAdsManager _yandexAdsManager;
 
-        private StartPoint()
+        private void Start()
         {
+            Debug.Log("Init Game!");
+
             InitManagers();
 
             _gameManager.StartSession();
@@ -32,9 +34,6 @@ namespace SGEngine.Runtime.App
             _scoreManager = new ScoreManager();
             DI.Add(_scoreManager);
 
-            _gameManager = new GameManager(router, _scoreManager, _audioManager);
-            DI.Add(_gameManager);
-
             _yandexAdsManager = new YandexAdsManager();
             DI.Add(_yandexAdsManager);
 
@@ -43,14 +42,9 @@ namespace SGEngine.Runtime.App
             router.Init();
 
             Debug.Log("Router Inited!");
-        }
 
-        [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.AfterSceneLoad)]
-        private static void InitGame()
-        {
-            Debug.Log("Init Game!");
-
-            _ = new StartPoint();
+            _gameManager = new GameManager(router, _scoreManager, _audioManager);
+            DI.Add(_gameManager);
         }
     }
 }

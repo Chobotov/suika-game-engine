@@ -4,14 +4,55 @@ using UnityEngine;
 namespace SGEngine.Configs.DropItem
 {
     [Serializable]
-    public class DropItemData
+    public class DropItemData : IEquatable<DropItemData>
     {
+        [SerializeField] private string name;
+        [SerializeField] private string id; 
+        [Header("View")]
         [SerializeField] private Sprite sprite;
         [SerializeField] private float scaleModificator;
+        [Header("Settings")]
         [SerializeField] private float weight;
+        [SerializeField] private int score;
+        [Header("Merge item Id")]
+        [SerializeField] private string nextItemDataId;
+
+        public string ID => id;
+        public int Score => score;
+        public string NextItemDataId => nextItemDataId;
+
+        public bool HasNextItem => !string.IsNullOrEmpty(nextItemDataId);
 
         public Sprite Sprite => sprite;
         public float ScaleModificator => scaleModificator;
         public float Weight => weight;
+
+        internal void SetId(string id)
+        {
+            this.id = id;
+        }
+
+        internal void SetNextItemId(string id)
+        {
+            nextItemDataId = id;
+        }
+
+        public bool Equals(DropItemData other)
+        {
+            return other.id.Equals(id);
+        }
+
+        public override bool Equals(object obj)
+        {
+            if (ReferenceEquals(null, obj)) return false;
+            if (ReferenceEquals(this, obj)) return true;
+            if (obj.GetType() != this.GetType()) return false;
+            return Equals((DropItemData)obj);
+        }
+
+        public override int GetHashCode()
+        {
+            throw new NotImplementedException();
+        }
     }
 }

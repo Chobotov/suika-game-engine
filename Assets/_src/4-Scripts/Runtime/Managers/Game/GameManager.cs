@@ -44,7 +44,7 @@ namespace SGEngine.Managers.Game
             _router.HideCurrentScreen();
             _router.ShowGameElements();
             _router.ShowScreen(ScreenType.MainGame);
-            
+
             GameState.SwitchTo(GameState.State.Game);
 
             _game = new SGEngine.Game.Game(_scoreManager, _audioInitiator);
