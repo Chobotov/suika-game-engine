@@ -1,6 +1,5 @@
 ﻿using Cysharp.Threading.Tasks;
 using DG.Tweening;
-using SGEngine.Configs.DropItem;
 using SGEngine.Managers.Score;
 using SGEngine.Runtime.App;
 using UnityEngine;
@@ -9,6 +8,10 @@ namespace SGEngine.DropItem
 {
     public class MergeController : MonoBehaviour
     {
+        [SerializeField] private ParticleSystem particleSystem;
+        [SerializeField] private AudioSource audioSource;
+        [SerializeField] private AudioClip mergeSound;
+        [Space]
         [SerializeField] private SpawnItems spawnItems;
         [SerializeField] private float mergeDuration = 0.15f;
 
@@ -27,15 +30,13 @@ namespace SGEngine.DropItem
 
                 if (!firstItemData.HasNextItem) return false;
 
-                /*await UniTask.Delay(100);*/
-
-                Merge(firstItem, secondItem, firstItemData);
+                Merge(firstItem, secondItem);
 
                 Debug.Log($"FirstItem : {firstItem.gameObject.name} is Equal SecondItem : {secondItem.gameObject.name}!");
 
                 return true;
             }
-            
+
             firstItem.CanCheckCollision = true;
             secondItem.CanCheckCollision = true;
 
@@ -44,8 +45,10 @@ namespace SGEngine.DropItem
             return false;
         }
 
-        private void Merge(DropItem firstItem, DropItem secondItem, DropItemData firstItemData)
+        private void Merge(DropItem firstItem, DropItem secondItem)
         {
+            var data = firstItem.Data;
+
             secondItem.SetRigidbodyType(RigidbodyType2D.Kinematic);
             secondItem.SetColliderState(false);
 
@@ -56,9 +59,14 @@ namespace SGEngine.DropItem
                     firstItem.Destroy();
                     secondItem.Destroy();
 
-                    spawnItems.SpawnItem(firstItemData.NextItemDataId, firstItem.transform.position);
+                    audioSource.PlayOneShot(mergeSound);
 
-                    ScoreManager.IncreaseScore(firstItemData.Score);
+                    particleSystem.transform.SetPositionAndRotation(firstItem.transform.position, Quaternion.identity);
+                    particleSystem.Play();
+
+                    spawnItems.SpawnItem(data.NextItemDataId, firstItem.transform.position);
+
+                    ScoreManager.IncreaseScore(data.Score);
                 });
         }
     }

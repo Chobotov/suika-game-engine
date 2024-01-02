@@ -48,17 +48,6 @@ namespace SGEngine.DropItem
             currentItem.OnDestroy += OnItemDestroy;
         }
 
-        private void OnItemDestroy(DropItem item)
-        {
-            item.OnCollisionDetect -= OnCollisionDetect;
-            item.OnDestroy -= OnItemDestroy;
-        }
-
-        private void OnCollisionDetect(DropItem firstItem, DropItem secondItem)
-        {
-            mergeController.TryMerge(firstItem, secondItem);
-        }
-
         public void SpawnItem(string itemId, Vector3 position)
         {
             var itemData = config.Items.FirstOrDefault(x => x.ID.Equals(itemId));
@@ -77,6 +66,17 @@ namespace SGEngine.DropItem
 
             item.OnCollisionDetect += OnCollisionDetect;
             item.OnDestroy += OnItemDestroy;
+        }
+
+        private void OnItemDestroy(DropItem item)
+        {
+            item.OnCollisionDetect -= OnCollisionDetect;
+            item.OnDestroy -= OnItemDestroy;
+        }
+
+        private void OnCollisionDetect(DropItem firstItem, DropItem secondItem)
+        {
+            mergeController.TryMerge(firstItem, secondItem);
         }
     }
 }

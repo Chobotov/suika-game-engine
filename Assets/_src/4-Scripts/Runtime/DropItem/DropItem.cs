@@ -19,6 +19,8 @@ namespace SGEngine.DropItem
 
         public bool CanCheckCollision { get; set; }
 
+        public bool IsDropped => isDropped;
+
         public event Action<DropItem, DropItem> OnCollisionDetect;
         public event Action<DropItem> OnDestroy;
 

@@ -42,7 +42,6 @@ namespace SGEngine.Managers.Game
         public void Start()
         {
             _router.HideCurrentScreen();
-            _router.ShowGameElements();
             _router.ShowScreen(ScreenType.MainGame);
 
             GameState.SwitchTo(GameState.State.Game);
@@ -53,7 +52,6 @@ namespace SGEngine.Managers.Game
         public void GameOver()
         {
             _router.HideCurrentScreen();
-            _router.HideGameElements();
             _router.ShowScreen(ScreenType.GameOver);
 
             _router.PlayerInfo.RecordScore.text = $"{_scoreManager.RecordScore}";
