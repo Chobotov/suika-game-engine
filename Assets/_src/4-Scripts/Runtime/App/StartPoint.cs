@@ -26,8 +26,6 @@ namespace SGEngine.Runtime.App
 
         private void InitManagers()
         {
-            var router = DI.Get<IRouter>();
-
             _audioManager = new AudioManager();
             DI.Add(_audioManager);
 
@@ -39,6 +37,7 @@ namespace SGEngine.Runtime.App
 
             Debug.Log("Managers Inited!");
 
+            var router = DI.Get<IRouter>();
             router.Init();
 
             Debug.Log("Router Inited!");

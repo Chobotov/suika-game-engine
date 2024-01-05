@@ -66,6 +66,13 @@ namespace SGEngine.DropItem
             collider2D.enabled = state;
         }
 
+        public void Destroy()
+        {
+            OnDestroy?.Invoke(this);
+
+            Destroy(gameObject);
+        }
+
         private void SetScale(float scaleModificator)
         {
             transform.localScale *= scaleModificator;
@@ -74,13 +81,6 @@ namespace SGEngine.DropItem
         private void SetSprite(Sprite sprite)
         {
             spriteRenderer.sprite = sprite;
-        }
-
-        public void Destroy()
-        {
-            OnDestroy?.Invoke(this);
-
-            Destroy(gameObject);
         }
 
         private void OnCollisionEnter2D(Collision2D col)
@@ -95,6 +95,8 @@ namespace SGEngine.DropItem
                 }
             }
         }
+
+        #region Equals
 
         public bool Equals(DropItem other)
         {
@@ -113,5 +115,7 @@ namespace SGEngine.DropItem
         {
             return HashCode.Combine(base.GetHashCode(), data);
         }
+
+        #endregion
     }
 }

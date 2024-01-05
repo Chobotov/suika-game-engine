@@ -10,9 +10,9 @@ namespace SGEngine.Configs.DropItem
         [SerializeField] private string id; 
         [Header("View")]
         [SerializeField] private Sprite sprite;
-        [SerializeField] private float scaleModificator;
+        [SerializeField, Range(0, 10)] private float scaleModificator;
         [Header("Settings")]
-        [SerializeField] private float weight;
+        [SerializeField, Range(0, 1)] private float weight;
         [SerializeField] private int score;
         [Header("Merge item Id")]
         [SerializeField] private string nextItemDataId;
@@ -35,6 +35,11 @@ namespace SGEngine.Configs.DropItem
         internal void SetNextItemId(string id)
         {
             nextItemDataId = id;
+        }
+
+        internal void SetScaleModificator(float scaleModificator)
+        {
+            this.scaleModificator = scaleModificator;
         }
 
         public bool Equals(DropItemData other)

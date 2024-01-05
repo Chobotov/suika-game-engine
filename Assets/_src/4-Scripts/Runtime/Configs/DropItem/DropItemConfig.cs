@@ -8,6 +8,9 @@ namespace SGEngine.Configs.DropItem
     public class DropItemConfig : ScriptableObject
     {
         [SerializeField] private List<DropItemData> items = new();
+        [Space]
+        [SerializeField, Range(0, 100)] private float minScale;
+        [SerializeField, Range(0, 100)] private float stepScale;
 
         public IReadOnlyList<DropItemData> Items => items;
 
@@ -31,6 +34,19 @@ namespace SGEngine.Configs.DropItem
                 {
                     items[i].SetNextItemId(items[nextItemIndex].ID);
                 }
+            }
+        }
+        
+        [ContextMenu("Set Items Scale")]
+        private void SetItemsScale()
+        {
+            var scale = minScale;
+
+            foreach (var item in items)
+            {
+                item.SetScaleModificator(scale);
+
+                scale += stepScale;
             }
         }
     }

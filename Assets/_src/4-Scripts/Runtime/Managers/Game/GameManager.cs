@@ -56,12 +56,8 @@ namespace SGEngine.Managers.Game
 
             _router.PlayerInfo.RecordScore.text = $"{_scoreManager.RecordScore}";
             _router.PlayerInfo.CurrentScore.text = $"{_scoreManager.CurrentScore}";
-            _router.PlayerInfo.Show();
-        }
 
-        public void Exit()
-        {
-            PlayerPrefs.Save();
+            _router.PlayerInfo.Show();
         }
     }
 }

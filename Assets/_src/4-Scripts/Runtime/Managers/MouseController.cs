@@ -20,7 +20,7 @@ namespace SGEngine.DropItem
             get => spawnItems.CurrentItem;
             set => spawnItems.CurrentItem = value;
         }
-        
+
         private void Update()
         {
             if (Input.GetMouseButtonDown(LMB))
@@ -36,17 +36,7 @@ namespace SGEngine.DropItem
             {
                 if (CurrentItem && isMoving)
                 {
-                    var mouseDelta = Input.mousePosition - startPos;
-                    var deltaX = mouseDelta.x * dropItemSpeed * Time.deltaTime;
-                    var newPos = CurrentItem.transform.position + new Vector3(deltaX, 0, 0);
-
-                    if (!dropZone.OverlapPoint(newPos))
-                    {
-                        return;
-                    }
-
-                    CurrentItem.transform.SetPositionAndRotation(newPos, Quaternion.identity);
-                    startPos = Input.mousePosition;
+                    MoveItem();
                 }
             }
 
@@ -54,14 +44,34 @@ namespace SGEngine.DropItem
             {
                 if (CurrentItem)
                 {
-                    CurrentItem.SetRigidbodyType(RigidbodyType2D.Dynamic);
-                    CurrentItem = null;
+                    ReleaseItem();
 
                     isMoving = false;
 
                     spawnItems.Spawn();
                 }
             }
+        }
+
+        private void MoveItem()
+        {
+            var mouseDelta = Input.mousePosition - startPos;
+            var deltaX = mouseDelta.x * dropItemSpeed * Time.deltaTime;
+            var newPos = CurrentItem.transform.position + new Vector3(deltaX, 0, 0);
+
+            if (!dropZone.OverlapPoint(newPos))
+            {
+                return;
+            }
+
+            CurrentItem.transform.SetPositionAndRotation(newPos, Quaternion.identity);
+            startPos = Input.mousePosition;
+        }
+
+        private void ReleaseItem()
+        {
+            CurrentItem.SetRigidbodyType(RigidbodyType2D.Dynamic);
+            CurrentItem = null;
         }
     }
 }
