@@ -23,7 +23,7 @@ namespace SGEngine.Managers.Ads
 
         private void OnPlayerLose()
         {
-            #if UNITY_WEBGL
+            #if UNITY_WEBGL && !UNITY_EDITOR
 
             _yandexSDK.ShowInterstitial();
 

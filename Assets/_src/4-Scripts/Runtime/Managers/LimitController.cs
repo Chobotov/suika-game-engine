@@ -1,4 +1,6 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections;
+using System.Collections.Generic;
 using Cysharp.Threading.Tasks;
 using DG.Tweening;
 using SGEngine.Game;
@@ -12,6 +14,7 @@ namespace SGEngine.DropItem
         [SerializeField] private SpriteRenderer spriteRenderer;
         [SerializeField] private TextMeshProUGUI text;
         [SerializeField] private int gameOverTimer;
+        [SerializeField] private float triggerLimitDelta = .5f;
 
         private List<DropItem> itemsInZone = new();
 
@@ -29,6 +32,10 @@ namespace SGEngine.DropItem
             if (col.TryGetComponent<DropItem>(out var dropItem))
             {
                 if (!dropItem.IsDropped) return;
+
+                var posDelta = Mathf.Abs(transform.position.y - dropItem.transform.position.y);
+
+                if (posDelta <= triggerLimitDelta) return;
 
                 if (!itemsInZone.Contains(dropItem))
                 {
@@ -63,12 +70,19 @@ namespace SGEngine.DropItem
             }
         }
 
-        private void StopTimer()
+        private void StartTimer()
         {
-            
+            StartCoroutine(StartTimerCoroutine());
         }
 
-        private async void StartTimer()
+        private void StopTimer()
+        {
+            StopAllCoroutines();
+
+            SetTimerVisible(false);
+        }
+
+        private IEnumerator StartTimerCoroutine()
         {
             var currentTime = gameOverTimer;
 
@@ -78,7 +92,7 @@ namespace SGEngine.DropItem
 
             while (currentTime >= 0)
             {
-                await UniTask.Delay(1000);
+                yield return new WaitForSeconds(1);
 
                 currentTime--;
 
