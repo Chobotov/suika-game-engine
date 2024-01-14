@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using TriInspector;
 using UnityEngine;
 
 namespace SGEngine.Configs.DropItem
@@ -7,23 +8,23 @@ namespace SGEngine.Configs.DropItem
     [CreateAssetMenu(fileName = "DropItemConfig", menuName = "SGEngine/DropItemConfig", order = 0)]
     public class DropItemConfig : ScriptableObject
     {
-        [SerializeField] private List<DropItemData> items = new();
-        [Space]
-        [SerializeField, Range(0, 100)] private float minScale;
-        [SerializeField, Range(0, 100)] private float stepScale;
+        [SerializeField, TableList(ShowElementLabels = true)] 
+        private List<DropItemData> items = new();
 
         public IReadOnlyList<DropItemData> Items => items;
 
         [ContextMenu("Generate IDs")]
+        [Button(ButtonSizes.Large, "Generate IDs")]
         private void GenerateIds()
         {
             foreach (var itemData in items)
             {
                 itemData.SetId(Guid.NewGuid().ToString());
             }
+
+            SetNextMergeItemID();
         }
-        
-        [ContextMenu("Set Next Merge Item ID")]
+
         private void SetNextMergeItemID()
         {
             for (var i = 0; i < items.Count; i++)
@@ -38,7 +39,8 @@ namespace SGEngine.Configs.DropItem
         }
         
         [ContextMenu("Set Items Scale")]
-        private void SetItemsScale()
+        [Button(ButtonSizes.Large, "Set Items Scale")]
+        private void SetItemsScale(float minScale, float step)
         {
             var scale = minScale;
 
@@ -46,7 +48,7 @@ namespace SGEngine.Configs.DropItem
             {
                 item.SetScaleModificator(scale);
 
-                scale += stepScale;
+                scale += step;
             }
         }
     }
