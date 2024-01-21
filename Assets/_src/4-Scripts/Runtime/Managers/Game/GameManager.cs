@@ -4,27 +4,33 @@ using SGEngine.Managers.Score;
 using SGEngine.Managers.UI;
 using SGEngine.Runtime.App;
 using SGEngine.UI;
-using UnityEngine;
 
 namespace SGEngine.Managers.Game
 {
     public class GameManager : IGameManager
     {
-        private IRouter _router;
-        private IScoreManager _scoreManager;
-        private IAudioManager _audioManager;
+        private IRouter router;
+        private IScoreManager scoreManager;
+        private IAudioManager audioManager;
 
-        private AudioInitiator _audioInitiator;
+        private AudioInitiator audioInitiator;
 
-        private SGEngine.Game.Game _game;
+        private SGEngine.Game.Game game;
 
         public GameManager(IRouter router, IScoreManager scoreManager, IAudioManager audioManager)
         {
-            _router = router;
-            _scoreManager = scoreManager;
-            _audioManager = audioManager;
+            this.router = router;
+            this.scoreManager = scoreManager;
+            this.audioManager = audioManager;
 
-            _audioInitiator = DI.Get<AudioInitiator>();
+            audioInitiator = DI.Get<AudioInitiator>();
+            
+            GameState.GameStateChange += state =>
+            {
+                if (state != GameState.State.Game) return; 
+                
+                StartSession();
+            };
 
             GameState.GameStateChange += state =>
             {
@@ -41,23 +47,21 @@ namespace SGEngine.Managers.Game
 
         public void Start()
         {
-            _router.HideCurrentScreen();
-            _router.ShowScreen(ScreenType.MainGame);
+            router.HideCurrentScreen();
+            router.ShowScreen(ScreenType.MainGame);
 
-            GameState.SwitchTo(GameState.State.Game);
-
-            _game = new SGEngine.Game.Game(_scoreManager, _audioInitiator);
+            game = new SGEngine.Game.Game(scoreManager, audioInitiator);
         }
 
         public void GameOver()
         {
-            _router.HideCurrentScreen();
-            _router.ShowScreen(ScreenType.GameOver);
+            router.HideCurrentScreen();
+            router.ShowScreen(ScreenType.GameOver);
 
-            _router.PlayerInfo.RecordScore.text = $"{_scoreManager.RecordScore}";
-            _router.PlayerInfo.CurrentScore.text = $"{_scoreManager.CurrentScore}";
+            router.PlayerInfo.RecordScore.text = $"{scoreManager.RecordScore}";
+            router.PlayerInfo.CurrentScore.text = $"{scoreManager.CurrentScore}";
 
-            _router.PlayerInfo.Show();
+            router.PlayerInfo.Show();
         }
     }
 }

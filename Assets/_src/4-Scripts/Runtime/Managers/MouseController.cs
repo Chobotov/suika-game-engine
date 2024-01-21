@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using SGEngine.Game;
+using UnityEngine;
 
 namespace SGEngine.DropItem
 {
@@ -14,6 +15,7 @@ namespace SGEngine.DropItem
 
         private Vector3 startPos;
         private bool isMoving;
+        private bool isLmbDown;
 
         private DropItem CurrentItem
         {
@@ -23,12 +25,21 @@ namespace SGEngine.DropItem
 
         private void Update()
         {
+            if (GameState.CurrentState == GameState.State.GameOver)
+            {
+                isMoving = false;
+                isLmbDown = false;
+
+                return;
+            }
+
             if (Input.GetMouseButtonDown(LMB))
             {
                 if (!isMoving)
                 {
                     startPos = Input.mousePosition;
                     isMoving = true;
+                    isLmbDown = true;
                 }
             }
 
@@ -40,7 +51,7 @@ namespace SGEngine.DropItem
                 }
             }
 
-            if (Input.GetMouseButtonUp(LMB))
+            if (isLmbDown && Input.GetMouseButtonUp(LMB))
             {
                 if (CurrentItem)
                 {
@@ -50,6 +61,8 @@ namespace SGEngine.DropItem
 
                     spawnItems.Spawn();
                 }
+
+                isLmbDown = false;
             }
         }
 

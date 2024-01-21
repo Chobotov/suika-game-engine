@@ -1,7 +1,5 @@
-﻿using System;
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
-using Cysharp.Threading.Tasks;
 using DG.Tweening;
 using SGEngine.Game;
 using TMPro;
@@ -77,6 +75,8 @@ namespace SGEngine.DropItem
 
         private void StopTimer()
         {
+            isGameOver = false;
+            
             StopAllCoroutines();
 
             SetTimerVisible(false);

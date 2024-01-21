@@ -1,39 +1,47 @@
+using SGEngine.DropItem;
 using SGEngine.Managers.Score;
+using SGEngine.Runtime.App;
 
 namespace SGEngine.Game
 {
     public class Game
     {
-        private IScoreManager _scoreManager;
+        private IScoreManager scoreManager;
 
-        private AudioInitiator _audioInitiator;
+        private SpawnItems spawnItems;
+        private AudioInitiator audioInitiator;
 
-        private void OnPlayerLose()
+        private SpawnItems SpawnItems => spawnItems ??= DI.Get<SpawnItems>();
+
+        public Game(IScoreManager scoreManager, AudioInitiator audioInitiator)
         {
-            _audioInitiator.PlayGameOver();
-            
-            EndGame();
+            this.scoreManager = scoreManager;
+            this.audioInitiator = audioInitiator;
 
-            GameState.SwitchTo(GameState.State.GameOver);
+            SpawnItems.ClearItems();
+            SpawnItems.Spawn();
         }
 
         private void OnCircleTouchPipe(bool isColorsEquals)
         {
             if (isColorsEquals)
             {
-                _scoreManager.IncreaseScore();
-                _audioInitiator.PlayCorrect();
+                scoreManager.IncreaseScore();
+                audioInitiator.PlayCorrect();
             }
             else
             {
-                _audioInitiator.PlayIncorrect();
+                audioInitiator.PlayIncorrect();
             }
         }
-        
-        public Game(IScoreManager scoreManager, AudioInitiator audioInitiator)
+
+        private void OnPlayerLose()
         {
-            _scoreManager = scoreManager;
-            _audioInitiator = audioInitiator;
+            audioInitiator.PlayGameOver();
+
+            EndGame();
+
+            GameState.SwitchTo(GameState.State.GameOver);
         }
 
         public void EndGame()

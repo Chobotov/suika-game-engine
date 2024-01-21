@@ -32,3 +32,6 @@ ExportedObj/
 *.unitypackage
 *.app
 *.exe
+Library
+*.csproj
+*.sln

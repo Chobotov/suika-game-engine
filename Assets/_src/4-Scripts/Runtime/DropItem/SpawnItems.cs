@@ -1,8 +1,10 @@
-﻿using System.Linq;
+﻿using System.Collections.Generic;
+using System.Linq;
 using Cysharp.Threading.Tasks;
 using SGEngine.Configs.DropItem;
 using SGEngine.Runtime.App;
 using TapSwap.Utils;
+using UnityEditor.Localization.Plugins.XLIFF.V12;
 using UnityEngine;
 
 namespace SGEngine.DropItem
@@ -16,6 +18,8 @@ namespace SGEngine.DropItem
         [SerializeField] private DropItem itemPrefab;
         [SerializeField] private Transform spawnPoint;
 
+        private List<DropItem> items = new();
+
         private DropItem currentItem;
 
         public DropItem CurrentItem
@@ -24,11 +28,21 @@ namespace SGEngine.DropItem
             set => currentItem = value;
         }
 
-        private void Start()
+        private void Awake()
         {
             DI.Add(this);
+        }
 
-            Spawn();
+        public void ClearItems()
+        {
+            items = FindObjectsOfType<DropItem>().ToList();
+
+            foreach (var item in items)
+            {
+                if (item) Destroy(item.gameObject);
+            }
+
+            items.Clear();
         }
 
         [ContextMenu("Spawn")]
@@ -46,6 +60,8 @@ namespace SGEngine.DropItem
 
             currentItem.OnCollisionDetect += OnCollisionDetect;
             currentItem.OnDestroy += OnItemDestroy;
+
+            items.Add(currentItem);
         }
 
         public void SpawnItem(string itemId, Vector3 position)

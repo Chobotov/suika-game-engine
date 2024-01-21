@@ -17,7 +17,6 @@ namespace SGEngine.Game
         public enum State
         {
             Game,
-            Pause,
             GameOver
         }
     }

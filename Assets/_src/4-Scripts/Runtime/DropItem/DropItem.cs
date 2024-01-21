@@ -7,13 +7,12 @@ namespace SGEngine.DropItem
     public class DropItem : MonoBehaviour, IEquatable<DropItem>
     {
         [SerializeField] private SpriteRenderer spriteRenderer;
+        [SerializeField] private bool isDropped;
 
         private CircleCollider2D collider2D;
         private Rigidbody2D rigidbody2D;
 
         private DropItemData data;
-
-        private bool isDropped;
 
         public DropItemData Data => data;
 

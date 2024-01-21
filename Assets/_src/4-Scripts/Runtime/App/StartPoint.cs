@@ -1,3 +1,4 @@
+using SGEngine.Game;
 using SGEngine.Managers.Ads;
 using SGEngine.Managers.Audio;
 using SGEngine.Managers.Game;
@@ -21,7 +22,7 @@ namespace SGEngine.Runtime.App
 
             InitManagers();
 
-            _gameManager.StartSession();
+            GameState.SwitchTo(GameState.State.Game);
         }
 
         private void InitManagers()
