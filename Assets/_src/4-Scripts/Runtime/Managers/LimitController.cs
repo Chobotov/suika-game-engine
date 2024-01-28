@@ -12,11 +12,11 @@ namespace SGEngine.DropItem
         [SerializeField] private SpriteRenderer spriteRenderer;
         [SerializeField] private TextMeshProUGUI text;
         [SerializeField] private int gameOverTimer;
-        [SerializeField] private float triggerLimitDelta = .5f;
+        [Space]
+        [SerializeField] private bool isTimerProcess;
+        [SerializeField] private bool isTimerOver;
 
-        private List<DropItem> itemsInZone = new();
-
-        private bool isGameOver;
+        private readonly List<DropItem> itemsInZone = new();
 
         private void Awake()
         {
@@ -27,45 +27,36 @@ namespace SGEngine.DropItem
 
         private void OnTriggerEnter2D(Collider2D col)
         {
-            if (col.TryGetComponent<DropItem>(out var dropItem))
+            if (!col.TryGetComponent<DropItem>(out var dropItem)) return;
+
+            if (dropItem.IsDropProcess) return;
+
+            if (!itemsInZone.Contains(dropItem))
             {
-                if (!dropItem.IsDropped) return;
-
-                var posDelta = Mathf.Abs(transform.position.y - dropItem.transform.position.y);
-
-                if (posDelta <= triggerLimitDelta) return;
-
-                if (!itemsInZone.Contains(dropItem))
-                {
-                    itemsInZone.Add(dropItem);
-                }
-
-                if (isGameOver) return;
-
-                spriteRenderer.DOFade(.8f, .15f);
-
-                StartTimer();
-
-                isGameOver = true;
+                itemsInZone.Add(dropItem);
             }
+
+            if (isTimerProcess || isTimerOver) return;
+
+            spriteRenderer.DOFade(.8f, .15f);
+
+            StartTimer();
         }
 
         private void OnTriggerExit2D(Collider2D col)
         {
-            if (col.TryGetComponent<DropItem>(out var dropItem))
-            {
-                if (itemsInZone.Contains(dropItem))
-                {
-                    itemsInZone.Remove(dropItem);
-                }
+            if (!col.TryGetComponent<DropItem>(out var dropItem)) return;
 
-                if (itemsInZone.Count == 0)
-                {
-                    spriteRenderer.DOFade(0f, .15f);
-                    
-                    StopTimer();
-                }
+            if (itemsInZone.Contains(dropItem))
+            {
+                itemsInZone.Remove(dropItem);
             }
+
+            if (itemsInZone.Count != 0) return;
+
+            spriteRenderer.DOFade(0f, .15f);
+
+            StopTimer();
         }
 
         private void StartTimer()
@@ -75,8 +66,9 @@ namespace SGEngine.DropItem
 
         private void StopTimer()
         {
-            isGameOver = false;
-            
+            isTimerProcess = false;
+            isTimerOver = false;
+
             StopAllCoroutines();
 
             SetTimerVisible(false);
@@ -84,6 +76,8 @@ namespace SGEngine.DropItem
 
         private IEnumerator StartTimerCoroutine()
         {
+            isTimerProcess = true;
+
             var currentTime = gameOverTimer;
 
             text.text = $"{currentTime}";
@@ -101,7 +95,8 @@ namespace SGEngine.DropItem
 
             SetTimerVisible(false);
 
-            isGameOver = false;
+            isTimerProcess = false;
+            isTimerOver = true;
 
             GameState.SwitchTo(GameState.State.GameOver);
         }

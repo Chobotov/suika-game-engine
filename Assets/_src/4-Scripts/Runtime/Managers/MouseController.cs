@@ -35,7 +35,9 @@ namespace SGEngine.DropItem
 
             if (Input.GetMouseButtonDown(LMB))
             {
-                if (!isMoving)
+                if (!IsMousePositionInBox()) return;
+
+                if (CurrentItem && !isMoving)
                 {
                     startPos = Input.mousePosition;
                     isMoving = true;
@@ -66,6 +68,18 @@ namespace SGEngine.DropItem
             }
         }
 
+        private bool IsMousePositionInBox()
+        {
+            var ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+
+            if (dropZone.OverlapPoint(ray.origin))
+            {
+                return true;
+            }
+
+            return false;
+        }
+
         private void MoveItem()
         {
             var mouseDelta = Input.mousePosition - startPos;
@@ -84,6 +98,7 @@ namespace SGEngine.DropItem
         private void ReleaseItem()
         {
             CurrentItem.SetRigidbodyType(RigidbodyType2D.Dynamic);
+            CurrentItem.IsDropProcess = true;
             CurrentItem = null;
         }
     }

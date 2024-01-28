@@ -20,6 +20,8 @@ namespace SGEngine.DropItem
 
         public bool IsDropped => isDropped;
 
+        public bool IsDropProcess { get; set; }
+
         public event Action<DropItem, DropItem> OnCollisionDetect;
         public event Action<DropItem> OnDestroy;
 

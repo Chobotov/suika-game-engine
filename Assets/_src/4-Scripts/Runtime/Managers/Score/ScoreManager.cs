@@ -15,7 +15,7 @@ namespace SGEngine.Managers.Score
         {
             PlayerPrefs.SetInt(RecordSaveKey, _recordScore);
         }
-        
+
         private void Load()
         {
             _recordScore = PlayerPrefs.GetInt(RecordSaveKey);

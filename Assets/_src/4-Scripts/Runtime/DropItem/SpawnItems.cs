@@ -1,10 +1,10 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using Cysharp.Threading.Tasks;
 using SGEngine.Configs.DropItem;
 using SGEngine.Runtime.App;
 using TapSwap.Utils;
-using UnityEditor.Localization.Plugins.XLIFF.V12;
 using UnityEngine;
 
 namespace SGEngine.DropItem
@@ -17,10 +17,15 @@ namespace SGEngine.DropItem
         [Space]
         [SerializeField] private DropItem itemPrefab;
         [SerializeField] private Transform spawnPoint;
+        [Space]
+        [SerializeField] private int spawnDelayTime = 1000;
 
         private List<DropItem> items = new();
 
         private DropItem currentItem;
+        private DropItemData nextItemData;
+
+        public event Action<DropItemData> OnNextItemChanged;
 
         public DropItem CurrentItem
         {
@@ -48,9 +53,11 @@ namespace SGEngine.DropItem
         [ContextMenu("Spawn")]
         public async void Spawn()
         {
-            var data = config.Items.GetRandomItemByWeight(config.Items.Select(x => x.Weight));
+            var data = nextItemData ?? config.Items.GetRandomItemByWeight(config.Items.Select(x => x.Weight));
 
-            await UniTask.Delay(1000);
+            await UniTask.Delay(spawnDelayTime);
+
+            RefreshNextItemData();
 
             currentItem = Instantiate(itemPrefab, spawnPoint.position, Quaternion.identity);
 
@@ -62,6 +69,13 @@ namespace SGEngine.DropItem
             currentItem.OnDestroy += OnItemDestroy;
 
             items.Add(currentItem);
+        }
+
+        public void RefreshNextItemData()
+        {
+            nextItemData = config.Items.GetRandomItemByWeight(config.Items.Select(x => x.Weight));
+
+            OnNextItemChanged?.Invoke(nextItemData);
         }
 
         public void SpawnItem(string itemId, Vector3 position)

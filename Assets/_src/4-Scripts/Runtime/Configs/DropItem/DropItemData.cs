@@ -1,5 +1,4 @@
 ﻿using System;
-using TriInspector;
 using UnityEngine;
 
 namespace SGEngine.Configs.DropItem

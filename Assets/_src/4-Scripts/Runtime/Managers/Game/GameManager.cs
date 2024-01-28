@@ -55,6 +55,8 @@ namespace SGEngine.Managers.Game
 
         public void GameOver()
         {
+            scoreManager.Reset();
+
             router.HideCurrentScreen();
             router.ShowScreen(ScreenType.GameOver);
 

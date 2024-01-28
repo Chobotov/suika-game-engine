@@ -8,7 +8,7 @@ namespace SGEngine.Managers.Score
         Action ScoreIncrease { get; set; }
         Action ScoreDecrease { get; set; }
         Action HealPoint { get; set; }
-        
+
         int CurrentScore { get; }
         int RecordScore { get; }
         void Reset();
