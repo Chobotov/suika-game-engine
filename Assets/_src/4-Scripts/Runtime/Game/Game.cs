@@ -22,19 +22,6 @@ namespace SGEngine.Game
             SpawnItems.Spawn();
         }
 
-        private void OnCircleTouchPipe(bool isColorsEquals)
-        {
-            if (isColorsEquals)
-            {
-                scoreManager.IncreaseScore();
-                audioInitiator.PlayCorrect();
-            }
-            else
-            {
-                audioInitiator.PlayIncorrect();
-            }
-        }
-
         private void OnPlayerLose()
         {
             audioInitiator.PlayGameOver();
