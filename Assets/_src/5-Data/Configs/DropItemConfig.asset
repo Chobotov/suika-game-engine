@@ -16,70 +16,70 @@ MonoBehaviour:
   - name: "\u0411\u0435\u043B\u044B\u0439"
     id: 90d1c6bd-86d9-4512-bdc3-528a2fd98c6f
     sprite: {fileID: 1858138744, guid: faef47f574d17694f91dfcbb2738937e, type: 3}
-    scaleModificator: 1
+    scaleModificator: 1.2
     weight: 0.5
     score: 5
     nextItemDataId: 889de951-dd50-438f-9e04-a5f41c170127
   - name: "\u041A\u0440\u0430\u0441\u043D\u044B\u0439"
     id: 889de951-dd50-438f-9e04-a5f41c170127
     sprite: {fileID: 1891375356, guid: faef47f574d17694f91dfcbb2738937e, type: 3}
-    scaleModificator: 1.3
+    scaleModificator: 1.5
     weight: 0.25
     score: 10
     nextItemDataId: 04425d14-1c6d-4817-b27d-313297943349
   - name: "\u0421\u0438\u043D\u0438\u0439"
     id: 04425d14-1c6d-4817-b27d-313297943349
     sprite: {fileID: -1769726953, guid: faef47f574d17694f91dfcbb2738937e, type: 3}
-    scaleModificator: 1.5999999
+    scaleModificator: 1.8
     weight: 0.15
     score: 15
     nextItemDataId: d244d4dc-2b76-43f5-82aa-652155251e43
   - name: "\u0411\u0438\u0440\u044E\u0437\u043E\u0432\u044B\u0439"
     id: d244d4dc-2b76-43f5-82aa-652155251e43
     sprite: {fileID: -1725095978, guid: faef47f574d17694f91dfcbb2738937e, type: 3}
-    scaleModificator: 1.8999999
+    scaleModificator: 2.1
     weight: 0.1
     score: 15
     nextItemDataId: f12d8349-63b4-4415-bf65-12284344e530
   - name: "\u0421\u0432\u0435\u0442\u043B\u043E \u0437\u0435\u043B\u0435\u043D\u044B\u0439"
     id: f12d8349-63b4-4415-bf65-12284344e530
     sprite: {fileID: -725264672, guid: faef47f574d17694f91dfcbb2738937e, type: 3}
-    scaleModificator: 2.1999998
+    scaleModificator: 2.3999999
     weight: 0
     score: 20
     nextItemDataId: 15ab7d9d-9bf8-4f88-a8de-e2768c21df8f
   - name: "\u041E\u0440\u0430\u043D\u0436\u0435\u0432\u044B\u0439"
     id: 15ab7d9d-9bf8-4f88-a8de-e2768c21df8f
     sprite: {fileID: 1426403480, guid: faef47f574d17694f91dfcbb2738937e, type: 3}
-    scaleModificator: 2.4999998
+    scaleModificator: 2.6999998
     weight: 0
     score: 25
     nextItemDataId: bdcfa086-1325-4b9b-ace6-8c86b5bcc4eb
   - name: "\u0421\u0438\u0440\u0435\u043D\u0435\u0432\u044B\u0439"
     id: bdcfa086-1325-4b9b-ace6-8c86b5bcc4eb
     sprite: {fileID: 1726261130, guid: faef47f574d17694f91dfcbb2738937e, type: 3}
-    scaleModificator: 2.7999997
+    scaleModificator: 2.9999998
     weight: 0
     score: 30
     nextItemDataId: 8f3db074-f0ec-41da-9881-60fc200331ba
   - name: "\u0420\u043E\u0437\u043E\u0432\u044B\u0439"
     id: 8f3db074-f0ec-41da-9881-60fc200331ba
     sprite: {fileID: 827169643, guid: faef47f574d17694f91dfcbb2738937e, type: 3}
-    scaleModificator: 3.0999997
+    scaleModificator: 3.2999997
     weight: 0
     score: 35
     nextItemDataId: 053dcfd8-7aec-4253-8abe-1731d41fdf8e
   - name: "\u0416\u0435\u043B\u0442\u044B\u0439"
     id: 053dcfd8-7aec-4253-8abe-1731d41fdf8e
     sprite: {fileID: -2111655920, guid: faef47f574d17694f91dfcbb2738937e, type: 3}
-    scaleModificator: 3.3999996
+    scaleModificator: 3.5999997
     weight: 0
     score: 40
     nextItemDataId: b21ff994-59c2-45ab-9f7b-4eddf59c7656
   - name: "\u0417\u0435\u043B\u0435\u043D\u044B\u0439"
     id: b21ff994-59c2-45ab-9f7b-4eddf59c7656
     sprite: {fileID: 441358753, guid: faef47f574d17694f91dfcbb2738937e, type: 3}
-    scaleModificator: 3.6999996
+    scaleModificator: 3.8999996
     weight: 0
     score: 45
     nextItemDataId: e478127f-f012-4c39-8349-0093876e82bf
