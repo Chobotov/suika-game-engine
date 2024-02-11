@@ -5343,7 +5343,7 @@ Transform:
   m_GameObject: {fileID: 228513451}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 7.26, z: 0}
+  m_LocalPosition: {x: 0, y: 7.073, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -5728,7 +5728,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   particleSystem: {fileID: 101128172}
-  audioSource: {fileID: 0}
+  audioSource: {fileID: 1560299914}
   mergeSound: {fileID: 8300000, guid: 543863293bcd040489735761423b0b45, type: 3}
   spawnItems: {fileID: 7590966034825516149}
   mergeDuration: 0.15
@@ -5905,7 +5905,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0.51029396}
+  m_Offset: {x: -0.008880615, y: 0.51029396}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -5916,7 +5916,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 9, y: 11.020588}
+  m_Size: {x: 7.3964577, y: 11.020588}
   m_EdgeRadius: 0
 --- !u!1 &538407211
 GameObject:
@@ -6482,7 +6482,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6,
     type: 3}
   m_Color: {r: 0.8396226, g: 0, b: 0, a: 1}

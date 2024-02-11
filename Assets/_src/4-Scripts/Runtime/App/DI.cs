@@ -10,9 +10,9 @@ namespace SGEngine.Runtime.App
         public static void Add<T>(T t) where T : class
         {
             var type = typeof(T);
-            
+
             if (_container.ContainsKey(type)) return;
-            
+
             _container.Add(type, t);
         }
 

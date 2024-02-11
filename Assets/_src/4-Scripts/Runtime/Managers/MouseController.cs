@@ -45,12 +45,9 @@ namespace SGEngine.DropItem
                 }
             }
 
-            if (Input.GetMouseButton(LMB))
+            if (CurrentItem && isMoving)
             {
-                if (CurrentItem && isMoving)
-                {
-                    MoveItem();
-                }
+                MoveItem();
             }
 
             if (isLmbDown && Input.GetMouseButtonUp(LMB))
@@ -70,9 +67,9 @@ namespace SGEngine.DropItem
 
         private bool IsMousePositionInBox()
         {
-            var ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+            var ray = Camera.main.ScreenToWorldPoint(Input.mousePosition);
 
-            if (dropZone.OverlapPoint(ray.origin))
+            if (dropZone.OverlapPoint(ray))
             {
                 return true;
             }
@@ -84,9 +81,11 @@ namespace SGEngine.DropItem
         {
             var mouseDelta = Input.mousePosition - startPos;
             var deltaX = mouseDelta.x * dropItemSpeed * Time.deltaTime;
-            var newPos = CurrentItem.transform.position + new Vector3(deltaX, 0, 0);
+            var pos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+            var newPos = new Vector3(pos.x, CurrentItem.transform.position.y, 0);//CurrentItem.transform.position + new Vector3(deltaX, 0, 0);
+            var newPosCheck = Camera.main.ScreenToWorldPoint(Input.mousePosition) + new Vector3(deltaX, 0, 0);
 
-            if (!dropZone.OverlapPoint(newPos))
+            if (!dropZone.OverlapPoint(newPosCheck))
             {
                 return;
             }
