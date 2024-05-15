@@ -1,7 +1,9 @@
-# TapSwap
+# Suika Game Engine
+An engine for the implementation of games such as suika game. Still work in progress for new features. 
+Now it contains basic functions.
 
-### My game in Google Play! (Removed from publication)
-[Google Play](https://play.google.com/store/apps/details?id=com.chobotov.tapswap)
+### Demo
+![alt-text](img/gameplay.gif)
 
 ### Scrennshots
 
