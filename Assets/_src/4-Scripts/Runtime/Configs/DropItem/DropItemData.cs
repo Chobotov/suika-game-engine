@@ -7,14 +7,11 @@ namespace SGEngine.Configs.DropItem
     public class DropItemData : IEquatable<DropItemData>
     {
         [SerializeField] private string name;
-        [SerializeField] private string id; 
-        //[Title("View")]
+        [SerializeField] private string id;
         [SerializeField] private Sprite sprite;
         [SerializeField, Range(0, 10)] private float scaleModificator;
-        //[Title("Settings")]
         [SerializeField, Range(0, 1)] private float weight;
         [SerializeField] private int score;
-        //[Title("Merge item Id")]
         [SerializeField] private string nextItemDataId;
 
         public string ID => id;

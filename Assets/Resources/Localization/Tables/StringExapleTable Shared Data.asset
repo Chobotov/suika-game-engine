@@ -16,7 +16,27 @@ MonoBehaviour:
   m_TableCollectionNameGuidString: 7de7c8bf502742f49aef0e5ed79da54a
   m_Entries:
   - m_Id: 14816931840
-    m_Key: exampleKey
+    m_Key: scoreKey
+    m_Metadata:
+      m_Items: []
+  - m_Id: 34131984870043648
+    m_Key: recordKey
+    m_Metadata:
+      m_Items: []
+  - m_Id: 34132187522035712
+    m_Key: nextKey
+    m_Metadata:
+      m_Items: []
+  - m_Id: 34132385325412352
+    m_Key: refreshKey
+    m_Metadata:
+      m_Items: []
+  - m_Id: 34132628083339264
+    m_Key: gameOverKey
+    m_Metadata:
+      m_Items: []
+  - m_Id: 34133182167674880
+    m_Key: restartKey
     m_Metadata:
       m_Items: []
   m_Metadata:

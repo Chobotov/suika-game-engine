@@ -1,21 +1,17 @@
+using SGEngine.App;
 using SGEngine.Game;
-using SGEngine.Managers.Audio;
-using SGEngine.Managers.Score;
-using SGEngine.Managers.UI;
-using SGEngine.Runtime.App;
 using SGEngine.UI;
 
-namespace SGEngine.Managers.Game
+namespace SGEngine.Managers
 {
-    public class GameManager : IGameManager
+    public class GameManager
     {
-        private IRouter router;
-        private IScoreManager scoreManager;
-        private IAudioManager audioManager;
+        private readonly IRouter router;
+        private readonly IScoreManager scoreManager;
+        private readonly IAudioManager audioManager;
 
-        private AudioInitiator audioInitiator;
-
-        private SGEngine.Game.Game game;
+        private readonly AudioInitiator audioInitiator;
+        private readonly SpawnItems spawnItems;
 
         public GameManager(IRouter router, IScoreManager scoreManager, IAudioManager audioManager)
         {
@@ -24,7 +20,8 @@ namespace SGEngine.Managers.Game
             this.audioManager = audioManager;
 
             audioInitiator = DI.Get<AudioInitiator>();
-            
+            spawnItems = DI.Get<SpawnItems>();
+
             GameState.GameStateChange += state =>
             {
                 if (state != GameState.State.Game) return; 
@@ -40,30 +37,22 @@ namespace SGEngine.Managers.Game
             };
         }
 
-        public void StartSession()
-        {
-            Start();
-        }
-
-        public void Start()
+        private void StartSession()
         {
             router.HideCurrentScreen();
             router.ShowScreen(ScreenType.MainGame);
 
-            game = new SGEngine.Game.Game(scoreManager, audioInitiator);
+            spawnItems.ClearItems();
+            spawnItems.Spawn();
         }
 
-        public void GameOver()
+        private void GameOver()
         {
+            audioInitiator.PlayGameOver();
             scoreManager.Reset();
 
             router.HideCurrentScreen();
             router.ShowScreen(ScreenType.GameOver);
-
-            router.PlayerInfo.RecordScore.text = $"{scoreManager.RecordScore}";
-            router.PlayerInfo.CurrentScore.text = $"{scoreManager.CurrentScore}";
-
-            router.PlayerInfo.Show();
         }
     }
 }

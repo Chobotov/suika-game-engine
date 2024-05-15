@@ -1,12 +1,13 @@
 using System;
 
-namespace SGEngine.Managers.Score
+namespace SGEngine.Managers
 {
     public interface IScoreManager
     {
         Action<int> ScoreChanged { get; set; }
         Action ScoreIncrease { get; set; }
         Action ScoreDecrease { get; set; }
+        Action<int> RecordScoreChanged { get; set; }
         Action HealPoint { get; set; }
 
         int CurrentScore { get; }

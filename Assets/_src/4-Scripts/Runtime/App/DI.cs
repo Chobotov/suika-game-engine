@@ -1,7 +1,7 @@
 using System;
 using System.Collections.Generic;
 
-namespace SGEngine.Runtime.App
+namespace SGEngine.App
 {
     public static class DI
     {

@@ -1,5 +1,5 @@
+using SGEngine.App;
 using SGEngine.Configs.Audio;
-using SGEngine.Runtime.App;
 using UnityEngine;
 
 namespace SGEngine.Game
@@ -28,6 +28,11 @@ namespace SGEngine.Game
         public void PlayIncorrect()
         {
             _source.PlayOneShot(_audioConfig.InCorrectColors);
+        }
+
+        public void PlayMerge()
+        {
+            _source.PlayOneShot(_audioConfig.MergeSfx);
         }
 
         public void PlayGameOver()

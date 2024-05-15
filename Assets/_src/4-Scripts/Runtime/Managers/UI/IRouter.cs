@@ -1,6 +1,6 @@
 using SGEngine.UI;
 
-namespace SGEngine.Managers.UI
+namespace SGEngine.Managers
 {
     public interface IRouter
     {
@@ -12,7 +12,5 @@ namespace SGEngine.Managers.UI
 
         void ShowGameElements();
         void HideGameElements();
-
-        PlayerInfo PlayerInfo { get; }
     }
 }

@@ -1,19 +1,19 @@
 using System.Linq;
-using SGEngine.Runtime.App;
+using SGEngine.App;
 using SGEngine.UI;
 using UnityEngine;
 using UnityEngine.UI;
 using Screen = SGEngine.UI.Screen;
 
-namespace SGEngine.Managers.UI
+namespace SGEngine.Managers
 {
     public class Router : MonoBehaviour, IRouter
     {
         [SerializeField] private Screen[] _screens;
-        [SerializeField] private GameObject screenContainer;
         [Space]
-        [SerializeField] private PlayerInfo _playerInfo;
         [SerializeField] private Image _backGround;
+        [Space]
+        [SerializeField] private GameObject screenContainer;
 
         private Screen _currentScreen;
 
@@ -25,8 +25,6 @@ namespace SGEngine.Managers.UI
         }
         
         public Screen CurrentScreen => _currentScreen;
-
-        public PlayerInfo PlayerInfo => _playerInfo;
 
         public void Init()
         {

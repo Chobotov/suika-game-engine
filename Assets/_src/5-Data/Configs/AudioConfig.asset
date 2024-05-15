@@ -15,3 +15,4 @@ MonoBehaviour:
   _gameOver: {fileID: 8300000, guid: 2b68d5e4be3cbd0479ba7e93c690a491, type: 3}
   _correctColors: {fileID: 8300000, guid: 008badc5988feaf4494dcd75d73fe424, type: 3}
   _inCorrectColors: {fileID: 8300000, guid: 510196a3380f24a429adbdf0cab097a7, type: 3}
+  _mergeSFX: {fileID: 8300000, guid: 543863293bcd040489735761423b0b45, type: 3}

@@ -8,9 +8,17 @@ namespace SGEngine.Configs.DropItem
     [CreateAssetMenu(fileName = "DropItemConfig", menuName = "SGEngine/DropItemConfig", order = 0)]
     public class DropItemConfig : ScriptableObject
     {
+        [SerializeField] private int spawnDelay;
+        [SerializeField] private float dropItemSpeed;
+        [Space]
+        [SerializeField] private Game.DropItem itemPrefab;
+        [Space]
         [SerializeField, TableList(ShowElementLabels = true)] 
         private List<DropItemData> items = new();
 
+        public int SpawnDelay => spawnDelay;
+        public float DropItemSpeed => dropItemSpeed;
+        public Game.DropItem ItemPrefab => itemPrefab;
         public IReadOnlyList<DropItemData> Items => items;
 
         [ContextMenu("Generate IDs")]

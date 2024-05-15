@@ -1,4 +1,4 @@
-namespace SGEngine.Managers.Audio
+namespace SGEngine.Managers
 {
     public interface IAudioManager
     {

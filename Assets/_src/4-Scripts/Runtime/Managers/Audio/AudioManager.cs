@@ -1,16 +1,25 @@
+using SGEngine.App;
 using SGEngine.Game;
-using SGEngine.Runtime.App;
 using UnityEngine;
 
-namespace SGEngine.Managers.Audio
+namespace SGEngine.Managers
 {
     public class AudioManager : IAudioManager
     {
         private const string SoundSaveKey = "snd";
 
         private AudioInitiator _audioInitiator;
-        
+
         private bool _isAudioEnable;
+
+        public bool IsAudioEnable => _isAudioEnable;
+
+        public AudioManager()
+        {
+            _audioInitiator = DI.Get<AudioInitiator>();
+
+            LoadAudioState();
+        }
 
         private void LoadAudioState()
         {
@@ -23,15 +32,6 @@ namespace SGEngine.Managers.Audio
         {
             PlayerPrefs.SetInt(SoundSaveKey, _isAudioEnable ? 1 : 0);
         }
-        
-        public AudioManager()
-        {
-            _audioInitiator = DI.Get<AudioInitiator>();
-            
-            LoadAudioState();
-        }
-
-        public bool IsAudioEnable => _isAudioEnable;
 
         public void SetAudioState(bool state)
         {

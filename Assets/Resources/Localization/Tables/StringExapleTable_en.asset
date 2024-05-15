@@ -19,7 +19,27 @@ MonoBehaviour:
     m_Items: []
   m_TableData:
   - m_Id: 14816931840
-    m_Localized: score
+    m_Localized: 'Score:'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 34131984870043648
+    m_Localized: 'Record:'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 34132187522035712
+    m_Localized: 'Next:'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 34132385325412352
+    m_Localized: Refresh
+    m_Metadata:
+      m_Items: []
+  - m_Id: 34132628083339264
+    m_Localized: Game Over!
+    m_Metadata:
+      m_Items: []
+  - m_Id: 34133182167674880
+    m_Localized: restart
     m_Metadata:
       m_Items: []
   references:

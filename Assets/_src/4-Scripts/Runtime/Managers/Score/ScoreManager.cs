@@ -1,19 +1,28 @@
 ﻿using System;
 using UnityEngine;
 
-namespace SGEngine.Managers.Score
+namespace SGEngine.Managers
 {
     public class ScoreManager : IScoreManager
     {
         private const string RecordSaveKey = "rcrd_scr";
-        
+
         private int _score;
         private int _recordScore;
         private bool IsHealPoint => _score % 10 == 0;
 
-        private void Save()
+        public Action<int> ScoreChanged { get; set; }
+        public Action ScoreIncrease { get; set; }
+        public Action ScoreDecrease { get; set; }
+        public Action<int> RecordScoreChanged { get; set; }
+        public Action HealPoint { get; set; }
+
+        public int CurrentScore => _score;
+        public int RecordScore => _recordScore;
+
+        public ScoreManager()
         {
-            PlayerPrefs.SetInt(RecordSaveKey, _recordScore);
+            Load();
         }
 
         private void Load()
@@ -21,18 +30,10 @@ namespace SGEngine.Managers.Score
             _recordScore = PlayerPrefs.GetInt(RecordSaveKey);
         }
 
-        public ScoreManager()
+        private void Save()
         {
-            Load();
+            PlayerPrefs.SetInt(RecordSaveKey, _recordScore);
         }
-
-        public Action<int> ScoreChanged { get; set; }
-        public Action ScoreIncrease { get; set; }
-        public Action ScoreDecrease { get; set; }
-        public Action HealPoint { get; set; }
-
-        public int CurrentScore => _score;
-        public int RecordScore => _recordScore;
 
         public void Reset()
         {
@@ -47,6 +48,9 @@ namespace SGEngine.Managers.Score
             if (_score > _recordScore)
             {
                 _recordScore = _score;
+                
+                RecordScoreChanged?.Invoke(_recordScore);
+                
                 Save();
             }
 

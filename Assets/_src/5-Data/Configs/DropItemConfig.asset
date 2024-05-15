@@ -12,6 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: befa9884f5214cd1aaaaa646244e3f5a, type: 3}
   m_Name: DropItemConfig
   m_EditorClassIdentifier: 
+  spawnDelay: 1000
+  dropItemSpeed: 1
+  itemPrefab: {fileID: 6512353080639714492, guid: 31dd923b19bf6384b97c4517ef7fe57b,
+    type: 3}
   items:
   - name: "\u0411\u0435\u043B\u044B\u0439"
     id: 90d1c6bd-86d9-4512-bdc3-528a2fd98c6f
