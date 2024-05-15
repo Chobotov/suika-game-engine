@@ -1,6 +1,6 @@
 # TapSwap
 
-### My game in Google Play!
+### My game in Google Play! (Removed from publication)
 [Google Play](https://play.google.com/store/apps/details?id=com.chobotov.tapswap)
 
 ### Scrennshots
