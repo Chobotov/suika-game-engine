@@ -1,4 +1,4 @@
-# Suika Game Engine
+# Suika Game Engine (WebGL)
 An engine for the implementation of games such as suika game. Still work in progress for new features. 
 Now it contains basic functions.
 
